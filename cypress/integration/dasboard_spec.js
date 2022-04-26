@@ -40,4 +40,23 @@ describe('URL Shortener', () => {
               .contains('https://www.youtube.com/watch?v=prZBPTfcrbA')
 
   })
+
+  it('When a user visits the page, they can view the Form with the proper inputs', () => {
+    cy.get('form input[name="title"]')
+      .should('have.attr', 'placeholder', 'Title...')
+    cy.get('form input[name="urlToShorten"]')
+      .should('have.attr', 'placeholder', 'URL to Shorten...')
+    cy.get('form button')
+      .contains('Shorten Please!')
+  })
+
+  it('When a user fills out the form, the information is reflected in the input fields', () => {
+    cy.get('form input[name="title"]')
+      .type('Awesome photo')
+        .should('have.value', "Awesome photo")
+    cy.get('form input[name="urlToShorten"]')
+      .type("https://images.unsplash.com/photo...")
+        .should('have.value', 'https://images.unsplash.com/photo...')
+
+  })
 })

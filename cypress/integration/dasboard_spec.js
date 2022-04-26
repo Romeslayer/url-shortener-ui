@@ -16,5 +16,28 @@ describe('URL Shortener', () => {
   it('When a user visits the page, they can view the page title and the existing shortened URLs', () => {
     cy.get('header')
       .contains('URL Shortener')
+
+    cy.get('section')
+      .children()
+        .should('have.length', 2)
+        .first()
+            .contains('Rocky balboa')
+          .next()
+            .contains('http://localhost:3001/example1')
+              .click()
+          .next()
+            .contains('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+
+      cy.get('section')
+        .children()
+          .should('have.length', 2)
+          .last()
+              .contains('Ricky bobby')
+            .next()
+              .contains('http://localhost:3001/example2')
+                .click()
+            .next()
+              .contains('https://www.youtube.com/watch?v=prZBPTfcrbA')
+
   })
 })

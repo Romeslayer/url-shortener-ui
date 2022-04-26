@@ -30,7 +30,6 @@ describe('URL Shortener', () => {
 
       cy.get('section')
         .children()
-          .should('have.length', 2)
           .last()
               .contains('Ricky bobby')
             .next()
@@ -57,6 +56,28 @@ describe('URL Shortener', () => {
     cy.get('form input[name="urlToShorten"]')
       .type("https://images.unsplash.com/photo...")
         .should('have.value', 'https://images.unsplash.com/photo...')
+  })
+
+  it('When a user fills out and submits the form, the new shortened URL is rendered', () => {
+    cy.get('form input[name="title"]')
+      .type('Awesome photo')
+
+    cy.get('form input[name="urlToShorten"]')
+      .type("https://images.unsplash.com/photo...")
+
+    cy.get('form button')
+        .click();
+
+    cy.get('section')
+      .children()
+        .should('have.length', 3)
+        .last()
+            .contains('Awesome photo')
+          .next()
+            .contains('http://localhost:3001/example3')
+              .click()
+          .next()
+            .contains('https://images.unsplash.com/photo...')
 
   })
 })

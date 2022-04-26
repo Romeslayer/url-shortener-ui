@@ -17,6 +17,6 @@ export const exampleURLS = {
 
 export const examplePost = {
   "id": 3, "long_url": "https://images.unsplash.com/photo...",
-   "short_url": "http://localhost:3001/useshorturl/2",
+   "short_url": "http://localhost:3001/example3",
     "title": "Awesome photo"
 }
